@@ -1,6 +1,7 @@
 package com.nanoproject.login.view;
 
 import com.nanoproject.login.controller.JoinMembership;
+import com.nanoproject.login.dto.LoginStatus;
 import com.nanoproject.login.dto.Member;
 
 import java.util.Scanner;
@@ -28,13 +29,14 @@ public class LoginMenu {
             int select = sc.nextInt();      // 회원 비회원을 선택하기 위한 변수
             sc.nextLine();
             if (select == 1) {
-                System.out.println("""
+                /*System.out.println("""
                         =====================================
                         회원으로 가입을 원하시면 1번을 입력해 주세요.
                         =====================================
-                        """);
-                System.out.print("숫자를 입력해주세요 : ");
-                int mem_nonmem = sc.nextInt();
+                        """);*/
+//                System.out.print("숫자를 입력해주세요 : ");
+//                int mem_nonmem = sc.nextInt();
+                int mem_nonmem = 1;
                 if (mem_nonmem == 1) {
                     // 여기에서는 회원가입 호출
                     System.out.println("""
@@ -42,7 +44,8 @@ public class LoginMenu {
                             회 원 가 입
                             ========================================
                             """);
-                    addmem();
+                    while (!isMemAdded()) System.out.println("이미 존재하는 ID입니다. 다른 ID를 입력해주세요.");
+//                    addmem();
                 }else if(select == 9){
                     break;
                 }else{
@@ -65,7 +68,7 @@ public class LoginMenu {
      * 회원으로 가입하기
      */
 
-    public void addmem(){
+    /*public void addmem(){
         Member member = new Member();
         Scanner sc = new Scanner(System.in);
         System.out.print("이름 : ");
@@ -81,31 +84,50 @@ public class LoginMenu {
         member = new Member(name,secreteNum,phonenum,id,nickName);
         //JoinMembership joinMembership = new JoinMembership();
         this.joinMembership.addMember(member);
+    }*/
+
+    /**
+     * 회원 정보를 입력받고 계정이 중복되었는지 검사
+     * @return ID가 중복되지 않아서 회원가입을 성공했으면 true, ID가 중복이면 false 반환
+     */
+    private boolean isMemAdded() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("이름 : ");
+        String name = sc.nextLine();
+        System.out.print("비밀번호 : ");
+        String secreteNum = sc.nextLine();
+        System.out.print("핸드폰번호 : ");
+        String phonenum = sc.nextLine();
+        System.out.print("ID : ");
+        String id = sc.nextLine();
+        System.out.print("닉네임 : ");
+        String nickName = sc.nextLine();
+        if (!joinMembership.isValidID(id)) return false;
+        Member member = new Member(name,secreteNum,phonenum,id,nickName);
+        this.joinMembership.addMember(member);
+        return true;
     }
-
-
 
     /***
      * 로그인시 회원 정보 찾기
      */
     public Member searchID(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("아이디 : ");
-        String id = sc.nextLine();
-        System.out.print("비밀번호 : ");
-        String SecreteNum = sc.nextLine();
-        Member member = new Member();
-        member = joinMembership.searchMember(id,SecreteNum);
-        if(member.getPhoneNum().equals("405")){
-            // 회원님 환영합니다.
-            System.out.println("회원 정보를 찾을 수 없습니다.");
-            // 해당 위치에서 구매로 넘기기
-        }else if(member.getPhoneNum().equals("505")){
-            System.out.println("비밀번호가 틀렸습니다.");
-            //System.out.println(correct);
-        }else{
-            System.out.println("로그인 되었습니다.");
-            System.out.println(member.getNickName() + " 님 환영합니다.");
+        while (true) {
+            System.out.print("아이디 : ");
+            String id = sc.nextLine();
+            System.out.print("비밀번호 : ");
+            String SecreteNum = sc.nextLine();
+            Member member = null;
+            LoginStatus loginStatus = joinMembership.tryLogin(id,SecreteNum);
+            if (loginStatus == LoginStatus.ID_NOT_FOUND) System.out.println("회원 정보를 찾을 수 없습니다. 다시 시도하세요.");
+            if (loginStatus == LoginStatus.WRONG_PASSWORD) System.out.println("비밀번호가 틀렸습니다 다시 시도하세요..");
+            if (loginStatus == LoginStatus.SUCCESS) {
+                member = joinMembership.getMemberById(id);
+                System.out.println("로그인 되었습니다.");
+                System.out.println(member.getNickName() + " 님 환영합니다.");
+                break;
+            }
         }
         return member;
     }

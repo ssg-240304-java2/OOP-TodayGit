@@ -1,5 +1,6 @@
 package com.nanoproject.login.db;
 
+import com.nanoproject.login.dto.LoginStatus;
 import com.nanoproject.login.dto.Member;
 
 import java.util.ArrayList;
@@ -32,25 +33,33 @@ public class MemberDB {
 
 
     // 멤버를 반환
-    public Member searchMem(String id, String SecreteNum){
-        Member member = new Member();
-        int result = -1;
+    public LoginStatus getLoginStatus(String id, String SecreteNum){
+//        Member member = new Member();
+        //int result = -1;
+        LoginStatus loginStatus = LoginStatus.ID_NOT_FOUND;
         for (int i = 0; i < memCount; i++) {
             if(this.members.get(i).getIdentification().equals(id)){ // 일치하는 아이디의 객체 위치를 출력
                 if(this.members.get(i).getSecreteNum().equals(SecreteNum)){ // 비밀번호 일치하는지 확인
-                    member = this.members.get(i);
-                    break;
+                    loginStatus = LoginStatus.SUCCESS;
                 }else{
-                    member = new Member("505","505","505","505","505");
-                    break;
+                    loginStatus = LoginStatus.WRONG_PASSWORD;
                 }
             }else{
-                member = new Member("404", "404", "404", "404", "404");
+                loginStatus = LoginStatus.ID_NOT_FOUND;
             }
         }
-        return member;
+        return loginStatus;
     }
 
 
-
+    public Member getMemberById(String id) {
+        Member foundMember = null;
+        for (Member member : members) {
+            if (member.getIdentification().equals(id)) foundMember = member;
+        }
+        /*for (Member member : members) {
+            if (member.getIdentification().equals(id)) foundMember = member;
+        }*/
+        return foundMember;
+    }
 }

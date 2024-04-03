@@ -1,12 +1,10 @@
 package com.nanoproject.product2.view;
 
-
 import com.nanoproject.login.dto.Member;
 import com.nanoproject.product2.controller.MenuManager;
 import com.nanoproject.product2.model.dto.BeverageDTO;
 import com.nanoproject.product2.model.dto.DessertDTO;
 import com.nanoproject.product2.model.dto.ItemDTO;
-import com.nanoproject.product2.model.dto.MemberDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,6 @@ public class Menu {
     private MenuManager menuManager;
     private List<ItemDTO> items;
     private Scanner scanner;
-
     private Payment payment;
 
     public Menu(Member member) {
