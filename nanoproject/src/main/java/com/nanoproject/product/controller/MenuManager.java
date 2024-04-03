@@ -1,8 +1,8 @@
-package com.nanoproject.product2.controller;
+package com.nanoproject.product.controller;
 
 
-import com.nanoproject.product2.model.dto.ItemDTO;
-import com.nanoproject.product2.model.entity.Order;
+import com.nanoproject.product.model.dto.ItemDTO;
+import com.nanoproject.product.model.entity.Order;
 
 import java.util.List;
 

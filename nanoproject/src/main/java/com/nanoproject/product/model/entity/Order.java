@@ -1,6 +1,6 @@
-package com.nanoproject.product2.model.entity;
+package com.nanoproject.product.model.entity;
 
-import com.nanoproject.product2.model.dto.ItemDTO;
+import com.nanoproject.product.model.dto.ItemDTO;
 
 import java.util.ArrayList;
 import java.util.List;

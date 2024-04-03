@@ -1,11 +1,11 @@
-package com.nanoproject.product2.view;
+package com.nanoproject.product.view;
 
 
-import com.nanoproject.product2.controller.MenuManager;
-import com.nanoproject.product2.model.dto.BeverageDTO;
-import com.nanoproject.product2.model.dto.DessertDTO;
-import com.nanoproject.product2.model.dto.ItemDTO;
-import com.nanoproject.product2.model.dto.MemberDTO;
+import com.nanoproject.product.controller.MenuManager;
+import com.nanoproject.product.model.dto.BeverageDTO;
+import com.nanoproject.product.model.dto.DessertDTO;
+import com.nanoproject.product.model.dto.ItemDTO;
+import com.nanoproject.product.model.dto.MemberDTO;
 
 import java.util.ArrayList;
 import java.util.List;
