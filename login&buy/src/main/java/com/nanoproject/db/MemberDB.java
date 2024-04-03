@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class MemberDB {
     private ArrayList<Member> members = new ArrayList<>();  // 회원용 컬렉션 리스트 생성
-    //private ArrayList<NonMember> nonMembers = new ArrayList<>();  // 비회원용 컬렉션 리스트 생성
 
     private int memCount;
     private int nonCount;
@@ -24,18 +23,8 @@ public class MemberDB {
         this.members.add(members);
         this.memCount++;
     }
-
-
-    /*public void addNonMember(NonMember nonMembers){
-        this.nonMembers.add(nonMembers);
-        this.nonCount++;
-    }*/
-
-
     // 멤버를 반환
     public LoginStatus getLoginStatus(String id, String SecreteNum){
-//        Member member = new Member();
-        //int result = -1;
         LoginStatus loginStatus = LoginStatus.ID_NOT_FOUND;
         for (int i = 0; i < memCount; i++) {
             if(this.members.get(i).getIdentification().equals(id)){ // 일치하는 아이디의 객체 위치를 출력
@@ -57,9 +46,6 @@ public class MemberDB {
         for (Member member : members) {
             if (member.getIdentification().equals(id)) foundMember = member;
         }
-        /*for (Member member : members) {
-            if (member.getIdentification().equals(id)) foundMember = member;
-        }*/
         return foundMember;
     }
 }
