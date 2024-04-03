@@ -1,10 +1,7 @@
-package com.nanoproject.login.dto;
-
-//import java.time.LocalDate;
+package com.nanoproject.model.dto.member;
 
 public class Login {
     public String name; // 사용자 이름
-    //private LocalDate birth;
     private String secreteNum; // 비밀번호
     private String phoneNum; //핸드폰번호
 
@@ -23,9 +20,8 @@ public class Login {
     public Login() {
     }
 
-    public Login(String name /*LocalDate birth*/, String secreteNum, String phoneNum) {
+    public Login(String name, String secreteNum, String phoneNum) {
         this.name = name;
-        //this.birth = birth;
         this.secreteNum = secreteNum;
         this.phoneNum = phoneNum;
     }
