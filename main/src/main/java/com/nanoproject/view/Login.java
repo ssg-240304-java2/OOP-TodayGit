@@ -6,23 +6,10 @@ import com.nanoproject.model.dto.member.MemberDTO;
 
 import java.util.Scanner;
 
-<<<<<<< HEAD:login&buy/src/main/java/com/nanoproject/view/LoginMenu.java
-public class LoginMenu {
-    //private JoinMembership joinMembership = new JoinMembership();
-    private JoinMembership joinMembership;
-=======
 public class Login {
     private MemberController joinMembership = new MemberController();
->>>>>>> 8f532338f74cf573a5b169e50699a4cc317f5c2f:main/src/main/java/com/nanoproject/view/Login.java
     private MemberDTO member = new MemberDTO();
-    private int num;
-
-    public LoginMenu(JoinMembership joinMembership) {
-        this.joinMembership = joinMembership;
-    }
-
     public MemberDTO menu(){
-        //call call1 = new call();
         Scanner sc = new Scanner(System.in);
 
         label :
@@ -50,7 +37,6 @@ public class Login {
                 break;
             }else if(select == 9){
                 System.out.println("프로그램을 종료합니다.");
-                num = 1;
                 break;
             } else {
                 System.out.println("숫자를 잘못 입력하셨습니다. 1번과 2번중 다시 입력해 주세요.");
@@ -60,9 +46,6 @@ public class Login {
         return this.member;
     }
 
-    public int getNum() {
-        return num;
-    }
     /***
      * 회원으로 가입하기
      */
