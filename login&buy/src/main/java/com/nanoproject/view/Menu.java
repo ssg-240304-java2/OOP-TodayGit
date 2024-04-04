@@ -1,10 +1,10 @@
-package com.nanoproject.product2.view;
+package com.nanoproject.view;
 
-import com.nanoproject.login.dto.Member;
-import com.nanoproject.product2.controller.MenuManager;
-import com.nanoproject.product2.model.dto.BeverageDTO;
-import com.nanoproject.product2.model.dto.DessertDTO;
-import com.nanoproject.product2.model.dto.ItemDTO;
+import com.nanoproject.model.dto.member.MemberDTO;
+import com.nanoproject.controller.MenuManager;
+import com.nanoproject.model.dto.product.BeverageDTO;
+import com.nanoproject.model.dto.product.DessertDTO;
+import com.nanoproject.model.dto.product.ItemDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import java.util.Scanner;
 
 public class Menu {
     //private MemberDTO member;
-    private Member member;
+    private MemberDTO member;
     private MenuManager menuManager;
     private List<ItemDTO> items;
     private Scanner scanner;
     private Payment payment;
 
-    public Menu(Member member) {
+    public Menu(MemberDTO member) {
         this.member = member;
         menuManager = new MenuManager();
         items = new ArrayList<>();

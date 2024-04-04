@@ -1,4 +1,4 @@
-package com.nanoproject.login.dto;
+package com.nanoproject.model.dto.member;
 
 public enum LoginStatus {
     ID_NOT_FOUND,

@@ -1,4 +1,4 @@
-package com.nanoproject.product2.model.dto;
+package com.nanoproject.model.dto.product;
 
 public class DessertDTO extends ItemDTO {
     private boolean isHeat;

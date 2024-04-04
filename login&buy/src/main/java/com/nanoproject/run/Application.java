@@ -1,7 +1,7 @@
-package com.nanoproject.product2.run;
+package com.nanoproject.run;
 
-import com.nanoproject.login.view.LoginMenu;
-import com.nanoproject.product2.view.Menu;
+import com.nanoproject.view.LoginMenu;
+import com.nanoproject.view.Menu;
 
 
 public class Application {

@@ -1,8 +1,6 @@
 package com.nanoproject.model.dto.member;
 
-import com.nanoproject.model.dto.member.Login;
-
-public class Member extends Login {
+public class MemberDTO extends LoginDTO {
     private String identification; // ID
     private String nickName;  // 닉네임
 
@@ -14,10 +12,10 @@ public class Member extends Login {
         return nickName;
     }
 
-    public Member() {
+    public MemberDTO() {
     }
 
-    public Member(String name, String secreteNum, String phoneNum, String identification, String nickName) {
+    public MemberDTO(String name, String secreteNum, String phoneNum, String identification, String nickName) {
         super(name, secreteNum, phoneNum);
         this.identification = identification;
         this.nickName = nickName;
