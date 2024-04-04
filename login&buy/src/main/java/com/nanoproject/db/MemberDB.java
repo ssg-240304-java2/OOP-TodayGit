@@ -1,5 +1,6 @@
 package com.nanoproject.db;
 
+
 import com.nanoproject.model.dto.member.LoginStatus;
 import com.nanoproject.model.dto.member.MemberDTO;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 
 public class MemberDB {
     private ArrayList<MemberDTO> members = new ArrayList<>();  // 회원용 컬렉션 리스트 생성
+
+
 
     private int memCount;
     private int nonCount;
@@ -22,16 +25,19 @@ public class MemberDB {
     public void addMember (MemberDTO members){
         this.members.add(members);
         this.memCount++;
+
     }
     // 멤버를 반환
     public LoginStatus getLoginStatus(String id, String SecreteNum){
         LoginStatus loginStatus = LoginStatus.ID_NOT_FOUND;
-        for (int i = 0; i < memCount; i++) {
+        for (int i = 0; i < members.size(); i++) {
             if(this.members.get(i).getIdentification().equals(id)){ // 일치하는 아이디의 객체 위치를 출력
                 if(this.members.get(i).getSecreteNum().equals(SecreteNum)){ // 비밀번호 일치하는지 확인
                     loginStatus = LoginStatus.SUCCESS;
+                    break;
                 }else{
                     loginStatus = LoginStatus.WRONG_PASSWORD;
+                    break;
                 }
             }else{
                 loginStatus = LoginStatus.ID_NOT_FOUND;
@@ -48,4 +54,5 @@ public class MemberDB {
         }
         return foundMember;
     }
+
 }

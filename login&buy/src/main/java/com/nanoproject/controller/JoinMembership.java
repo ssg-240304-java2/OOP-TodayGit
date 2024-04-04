@@ -37,4 +37,7 @@ public class JoinMembership {
     public MemberDTO getMemberById(String id) {
         return memberDB.getMemberById(id);
     }
+
+
+
 }
