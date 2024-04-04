@@ -6,19 +6,14 @@ import com.nanoproject.model.dto.member.MemberDTO;
 
 import java.util.Scanner;
 
-<<<<<<< HEAD:login&buy/src/main/java/com/nanoproject/view/LoginMenu.java
 public class LoginMenu {
     //private JoinMembership joinMembership = new JoinMembership();
-    private JoinMembership joinMembership;
-=======
-public class Login {
-    private MemberController joinMembership = new MemberController();
->>>>>>> 8f532338f74cf573a5b169e50699a4cc317f5c2f:main/src/main/java/com/nanoproject/view/Login.java
+    private MemberController memberController;
     private MemberDTO member = new MemberDTO();
     private int num;
 
-    public LoginMenu(JoinMembership joinMembership) {
-        this.joinMembership = joinMembership;
+    public LoginMenu(MemberController memberController) {
+        this.memberController = memberController;
     }
 
     public MemberDTO menu(){
@@ -76,16 +71,16 @@ public class Login {
         System.out.print("이름 : ");
         String name = sc.nextLine();
         System.out.print("비밀번호 : ");
-        String secreteNum = sc.nextLine();
+        String secretNum = sc.nextLine();
         System.out.print("핸드폰번호 : ");
         String phoneNum = sc.nextLine();
         System.out.print("ID : ");
         String id = sc.nextLine();
         System.out.print("닉네임 : ");
         String nickName = sc.nextLine();
-        if (!joinMembership.isValidID(id)) return false;
-        MemberDTO member = new MemberDTO(name,secreteNum,phoneNum,id,nickName);
-        this.joinMembership.addMember(member);
+        if (!memberController.isValidID(id)) return false;
+        MemberDTO member = new MemberDTO(name,secretNum,phoneNum,id,nickName);
+        this.memberController.addMember(member);
         return true;
     }
 
@@ -100,11 +95,11 @@ public class Login {
             String id = sc.nextLine();
             System.out.print("비밀번호 : ");
             String SecreteNum = sc.nextLine();
-            LoginStatus loginStatus = joinMembership.tryLogin(id,SecreteNum);
+            LoginStatus loginStatus = memberController.tryLogin(id,SecreteNum);
             if (loginStatus == LoginStatus.ID_NOT_FOUND) System.out.println("회원 정보를 찾을 수 없습니다. 다시 시도하세요.");
             if (loginStatus == LoginStatus.WRONG_PASSWORD) System.out.println("비밀번호가 틀렸습니다 다시 시도하세요..");
             if (loginStatus == LoginStatus.SUCCESS) {
-                member = joinMembership.getMemberById(id);
+                member = memberController.getMemberById(id);
                 System.out.println("로그인 되었습니다.");
                 System.out.println(member.getNickName() + " 님 환영합니다.");
                 break;
