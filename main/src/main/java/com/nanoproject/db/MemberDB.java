@@ -26,7 +26,7 @@ public class MemberDB {
         LoginStatus loginStatus = LoginStatus.ID_NOT_FOUND;
         for (int i = 0; i < memCount; i++) {
             if(this.members.get(i).getIdentification().equals(id)){ // 일치하는 아이디의 객체 위치를 출력
-                if(this.members.get(i).getSecreteNum().equals(SecreteNum)){ // 비밀번호 일치하는지 확인
+                if(this.members.get(i).getSecretNum().equals(SecreteNum)){ // 비밀번호 일치하는지 확인
                     loginStatus = LoginStatus.SUCCESS;
                 }else{
                     loginStatus = LoginStatus.WRONG_PASSWORD;
