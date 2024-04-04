@@ -1,8 +1,8 @@
-package com.nanoproject.login.controller;
+package com.nanoproject.controller;
 
-import com.nanoproject.login.db.MemberDB;
-import com.nanoproject.login.dto.LoginStatus;
-import com.nanoproject.login.dto.Member;
+import com.nanoproject.db.MemberDB;
+import com.nanoproject.model.dto.member.LoginStatus;
+import com.nanoproject.model.dto.member.MemberDTO;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class JoinMembership {
      * 회원가입용 회원 추가
      * @param member
      */
-    public void addMember(Member member){
+    public void addMember(MemberDTO member){
         memberDB.addMember(member);
     }
 
@@ -27,14 +27,14 @@ public class JoinMembership {
      * @return: id가 중복되면 false, 유효한 id면 true 반환
      */
     public boolean isValidID(String id) {
-        ArrayList<Member> members = memberDB.getMembers();
-        for (Member member : members) {
+        ArrayList<MemberDTO> members = memberDB.getMembers();
+        for (MemberDTO member : members) {
             if (member.getIdentification().equals(id)) return false;
         }
         return true;
     }
 
-    public Member getMemberById(String id) {
+    public MemberDTO getMemberById(String id) {
         return memberDB.getMemberById(id);
     }
 }

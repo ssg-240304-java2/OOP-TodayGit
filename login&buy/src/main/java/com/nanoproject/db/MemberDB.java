@@ -1,17 +1,17 @@
-package com.nanoproject.login.db;
+package com.nanoproject.db;
 
-import com.nanoproject.login.dto.LoginStatus;
-import com.nanoproject.login.dto.Member;
+import com.nanoproject.model.dto.member.LoginStatus;
+import com.nanoproject.model.dto.member.MemberDTO;
 
 import java.util.ArrayList;
 
 public class MemberDB {
-    private ArrayList<Member> members = new ArrayList<>();  // 회원용 컬렉션 리스트 생성
+    private ArrayList<MemberDTO> members = new ArrayList<>();  // 회원용 컬렉션 리스트 생성
 
     private int memCount;
     private int nonCount;
 
-    public ArrayList<Member> getMembers() {
+    public ArrayList<MemberDTO> getMembers() {
         return members;
     }
 
@@ -19,7 +19,7 @@ public class MemberDB {
      * DB에 회원가입시 회원 정보를 담는(추가하는) 콜렉션
      * @param members
      */
-    public void addMember (Member members){
+    public void addMember (MemberDTO members){
         this.members.add(members);
         this.memCount++;
     }
@@ -41,9 +41,9 @@ public class MemberDB {
     }
 
 
-    public Member getMemberById(String id) {
-        Member foundMember = null;
-        for (Member member : members) {
+    public MemberDTO getMemberById(String id) {
+        MemberDTO foundMember = null;
+        for (MemberDTO member : members) {
             if (member.getIdentification().equals(id)) foundMember = member;
         }
         return foundMember;

@@ -1,15 +1,15 @@
-package com.nanoproject.login.view;
+package com.nanoproject.view;
 
-import com.nanoproject.login.controller.JoinMembership;
-import com.nanoproject.login.dto.LoginStatus;
-import com.nanoproject.login.dto.Member;
+import com.nanoproject.controller.JoinMembership;
+import com.nanoproject.model.dto.member.LoginStatus;
+import com.nanoproject.model.dto.member.MemberDTO;
 
 import java.util.Scanner;
 
 public class LoginMenu {
     private JoinMembership joinMembership = new JoinMembership();
-    private Member member = new Member();
-    public Member menu(){
+    private MemberDTO member = new MemberDTO();
+    public MemberDTO menu(){
         Scanner sc = new Scanner(System.in);
 
         label :
@@ -34,6 +34,9 @@ public class LoginMenu {
                 while (!isMemAdded()) System.out.println("이미 존재하는 ID입니다. 다른 ID를 입력해주세요.");
             } else if (select == 2) {
                 this.member = searchID();
+                break;
+            }else if(select == 9){
+                System.out.println("프로그램을 종료합니다.");
                 break;
             } else {
                 System.out.println("숫자를 잘못 입력하셨습니다. 1번과 2번중 다시 입력해 주세요.");
@@ -64,7 +67,7 @@ public class LoginMenu {
         System.out.print("닉네임 : ");
         String nickName = sc.nextLine();
         if (!joinMembership.isValidID(id)) return false;
-        Member member = new Member(name,secreteNum,phonenum,id,nickName);
+        MemberDTO member = new MemberDTO(name,secreteNum,phonenum,id,nickName);
         this.joinMembership.addMember(member);
         return true;
     }
@@ -72,14 +75,14 @@ public class LoginMenu {
     /***
      * 로그인시 회원 정보 찾기
      */
-    public Member searchID(){
+    public MemberDTO searchID(){
         Scanner sc = new Scanner(System.in);
+        MemberDTO member = null;
         while (true) {
             System.out.print("아이디 : ");
             String id = sc.nextLine();
             System.out.print("비밀번호 : ");
             String SecreteNum = sc.nextLine();
-            Member member = null;
             LoginStatus loginStatus = joinMembership.tryLogin(id,SecreteNum);
             if (loginStatus == LoginStatus.ID_NOT_FOUND) System.out.println("회원 정보를 찾을 수 없습니다. 다시 시도하세요.");
             if (loginStatus == LoginStatus.WRONG_PASSWORD) System.out.println("비밀번호가 틀렸습니다 다시 시도하세요..");
