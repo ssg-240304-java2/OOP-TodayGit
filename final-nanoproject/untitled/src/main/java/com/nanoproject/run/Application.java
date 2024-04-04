@@ -12,7 +12,7 @@ public class Application {
         MemberDTO memberDTO = new MemberDTO();
         while (true) {
             LoginMenu loginMenu = new LoginMenu(memberController);
-            memberDTO = loginMenu.Login();  // 로그인창
+            memberDTO = loginMenu.menu();  // 로그인창
             if(loginMenu.getNum() == 1){
                 break;
             }
