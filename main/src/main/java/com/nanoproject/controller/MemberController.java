@@ -35,4 +35,7 @@ public class MemberController {
     public MemberDTO getMemberById(String id) {
         return memberDB.getMemberById(id);
     }
+
+
+
 }
